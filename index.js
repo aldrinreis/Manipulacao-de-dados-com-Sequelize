@@ -37,6 +37,42 @@ class Setor extends Model {
 // Inicializando o modelo create table setor
 Setor.init(sequelize);
 
+class Funcionario extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        matricula: {
+          type: DataTypes.INTEGER,
+          autoIncrement: true,
+          allowNull: false,
+          primaryKey: true,
+        },
+        idsetor: {
+          type: DataTypes.INTEGER,
+          references: {
+            model: Setor,
+            key: "idsetor",
+          },
+          allowNull: false,
+        },
+        nome: {
+          type: DataTypes.STRING(60),
+          allowNull: false,
+        },
+        nascimento: {
+          type: DataTypes.DATE,
+        },
+        telefone: {
+          type: DataTypes.STRING(15),
+        },
+      },
+      { sequelize, modelName: "funcionario", tableName: "funcionarios" },
+    );
+  }
+}
+
+Funcionario.init(sequelize);
+
 // Sincronismo
 (async () => {
   await sequelize.sync({ force: true });
