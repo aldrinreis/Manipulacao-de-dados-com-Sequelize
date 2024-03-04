@@ -118,5 +118,15 @@ Funcionario.init(sequelize);
   );
 
   // Delete - Deletar objetos
-  
+
+  const setor_delete = await Setor.findByPk(1);
+  setor_delete.destroy();
+
+  // Read - Listar objetos
+  const setores_exclusao = await Setor.findAll();
+  console.log(
+    "Lista de setores Após delete: \n",
+    JSON.stringify(setores_exclusao, ["idsetor", "nome", "ramal", "email"], 2),
+    "\n\n",
+  );
 })();
