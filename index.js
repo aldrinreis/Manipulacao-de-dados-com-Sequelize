@@ -76,4 +76,28 @@ Funcionario.init(sequelize);
 // Sincronismo
 (async () => {
   await sequelize.sync({ force: true });
+  // Usando o Create
+  const setor_create = await Setor.create({
+    nome: "Financeiro",
+    ramal: "2134",
+    email: "financeiro@empresa.com",
+  });
+  const setor_create_S = await Setor.create({
+    nome: "Secretaria",
+    ramal: "2135",
+    email: "secretaria@empresa.com",
+  });
+  const setor_create_P = await Setor.create({
+    nome: "Portaria",
+    ramal: "2136",
+    email: "portaria@empresa.com",
+  });
+
+  // Read - Listar objetos
+  const setores_listar = await Setor.findAll();
+  console.log(
+    "Lista de setores: \n",
+    JSON.stringify(setores_listar, ["idsetor", "nome", "ramal", "email"], 2),
+    "\n\n",
+  );
 })();
