@@ -100,4 +100,23 @@ Funcionario.init(sequelize);
     JSON.stringify(setores_listar, ["idsetor", "nome", "ramal", "email"], 2),
     "\n\n",
   );
+
+  // Update - Atualizar objetos
+
+  const setor_chave = await Setor.findByPk(3);
+  setor_chave.nome = "Estoque";
+
+  const resultado = await setor_chave.save();
+  console.log(resultado);
+
+  // Read - Listar objetos
+  const setores_update = await Setor.findAll();
+  console.log(
+    "Lista de setores Atualizados: \n",
+    JSON.stringify(setores_update, ["idsetor", "nome", "ramal", "email"], 2),
+    "\n\n",
+  );
+
+  // Delete - Deletar objetos
+  
 })();
